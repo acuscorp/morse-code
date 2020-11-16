@@ -1,6 +1,9 @@
 ```mermaid
-graph TD
-    Start --> Stop
+graph LR
+A[Square Rect] -- Link text --> B((Circle))
+A --> C(Round Rect)
+B --> D{Rhombus}
+C --> D
 
 ```
 ```kotlin
