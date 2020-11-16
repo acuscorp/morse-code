@@ -1,17 +1,68 @@
+## Problem: 
+#### This code is inspired on Morse code using  the dot ( . ) and dasth ( - ). 
+**Example:**  
+. is E
+\- is T
+..- is  U
+-.- is K
+
+but here is if you find ? simbol
+? is [ E , T ]
+.? is [ I , A ]
+-?- is [ K , O ]
+
+and 
+
+?? is [ I , A , N , M ]
+?.? is [S , U , D , K ] 
 ```mermaid
-graph LR
-A[Square Rect] -- Link text --> B((Circle))
-A --> C(Round Rect)
-B --> D{Rhombus}
-C --> D
+graph TB
+start((Start))  -.-> E((E))
+start((Start))  --> T((T))
+E -.-> I((I))
+E --> A((A))
+T -.-> N((N))
+T --> M((M))
+
+I -.-> S((S))
+I --> U((U))
+N -.-> D((D))
+N --> K((K))
+
+A -.-> R((R))
+A --> W((W))
+M -.-> G((G))
+M -->O((O))
+
 
 ```
-```kotlin
-fun main() {
-    val a = "?.-"
 
+###  SOLUTION:
+I require a node 
+```kotlin
+class TreeNode<T>(val value: T) {
+    val children: MutableList<TreeNode<T>> = mutableListOf()
+}
+```
+then I added extension function to the class TreeNode where you can get the left child and the right child
+```kotlin
+fun <T> TreeNode<T>.getChildLeft(): TreeNode<T> = children[0]
+
+fun <T> TreeNode<T>.getChildRight(): TreeNode<T> = children[1]
+```
+and then I initialized the TreeNode as the flow chart indicates
+```kotlin
+fun makeWord(): TreeNode<String> {
+	val _init = TreeNode("")
+	 ...
+	 return _init
+}
+```
+### Solution code
+```kotlin
+fun main(args: Array<String>) {
     val tree = makeWord()
-    val splitted = a.split("")
+    val splitted = a[0].split("")
     var resultLocal: ArrayList<TreeNode<String>> = arrayListOf(tree)
 
     var nodeArray = arrayListOf<TreeNode<String>>()
@@ -56,26 +107,19 @@ fun main() {
                         }
                         local
                     }
-
-
                 }
                 else -> {
                     arrayListOf()
                 }
             }
             resultLocal = nodeArray
-
         }
-
     }
     var arrayList = arrayListOf<String>()
     resultLocal.forEach {
         arrayList.add(it.value)
     }
-
     println(arrayList)
-
-
 }
 
 class TreeNode<T>(val value: T) {
@@ -140,9 +184,3 @@ fun makeWord(): TreeNode<String> {
     m.add(o)
     return _init
 }
-
-
-
-
-
-```
